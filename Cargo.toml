@@ -17,4 +17,5 @@ readme = "README.md"
 pest = "2.1"
 pest_derive = "2.1"
 snafu = "0.6"
-bytes = "1.0"
+bytes = { version = "1.0", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }

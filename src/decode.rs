@@ -5,6 +5,7 @@
 
 use crate::context::*;
 use bytes::{Bytes, BytesMut};
+use serde::{Deserialize, Serialize};
 use std::convert::{TryFrom, TryInto};
 use std::fmt::Debug;
 
@@ -18,7 +19,7 @@ impl Context
 }
 
 /// Decoded protocol buffer value.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub enum Value
 {
     /// `double` value.
@@ -72,7 +73,7 @@ pub enum Value
 }
 
 /// Packed scalar fields.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub enum PackedArray
 {
     /// `double` value.
@@ -104,7 +105,7 @@ pub enum PackedArray
 }
 
 /// Unknown value.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub enum UnknownValue
 {
     /// Unknown varint (wire type = 0).
@@ -130,7 +131,7 @@ pub enum UnknownValue
 }
 
 /// Enum value.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct EnumValue
 {
     /// Reference to the enum type.
@@ -141,7 +142,7 @@ pub struct EnumValue
 }
 
 /// Message value.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct MessageValue
 {
     /// Reference to the message type.
@@ -158,7 +159,7 @@ pub struct MessageValue
 }
 
 /// Field value.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct FieldValue
 {
     /// Field number.

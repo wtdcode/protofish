@@ -1,6 +1,7 @@
 //! Decoding context built from the proto-files.
 
 use bytes::Bytes;
+use serde::{Deserialize, Serialize};
 use snafu::{ResultExt, Snafu};
 use std::collections::{BTreeMap, HashMap};
 
@@ -9,27 +10,27 @@ mod builder;
 mod modify_api;
 mod parse;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 struct InternalRef(usize);
 
 /// A reference to a message. Can be resolved to `MessageInfo` through a `Context`.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct MessageRef(InternalRef);
 
 /// A reference to an enum. Can be resolved to `EnumInfo` through a `Context`.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct EnumRef(InternalRef);
 
 /// A reference to a package.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct PackageRef(InternalRef);
 
 /// A reference to a service.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct ServiceRef(InternalRef);
 
 /// A reference to a service.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct OneofRef(InternalRef);
 
 /// Protofish error type.
