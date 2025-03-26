@@ -134,7 +134,7 @@ pub enum OneofInsertError
 }
 
 /// Type reference that references either message or enum type.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum TypeRef
 {
     /// Message type reference.
@@ -162,7 +162,7 @@ pub enum ItemType
 ///
 /// Contains type information parsed from the files. Required for decoding
 /// incoming Protobuf messages.
-#[derive(Default, Debug, PartialEq)]
+#[derive(Default, Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Context
 {
     packages: Vec<Package>,
@@ -173,7 +173,7 @@ pub struct Context
 }
 
 /// Package details.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Package
 {
     /// Package name. None for an anonymous package.
@@ -190,7 +190,7 @@ pub struct Package
 }
 
 /// Message or enum type.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum TypeInfo
 {
     /// Message.
@@ -201,7 +201,7 @@ pub enum TypeInfo
 }
 
 /// Message details
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct MessageInfo
 {
@@ -229,7 +229,7 @@ pub struct MessageInfo
 }
 
 /// Reference to a type parent.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum TypeParent
 {
     /// Reference to a package for top-level types.
@@ -240,7 +240,7 @@ pub enum TypeParent
 }
 
 /// Enum details
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct EnumInfo
 {
@@ -261,7 +261,7 @@ pub struct EnumInfo
 }
 
 /// Message field details.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct MessageField
 {
@@ -285,7 +285,7 @@ pub struct MessageField
 }
 
 /// Defines the multiplicity of the field values.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub enum Multiplicity
 {
     /// Field is not repeated.
@@ -302,7 +302,7 @@ pub enum Multiplicity
 }
 
 /// Message `oneof` details.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct Oneof
 {
@@ -320,7 +320,7 @@ pub struct Oneof
 }
 
 /// Enum field details.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct EnumField
 {
@@ -335,7 +335,7 @@ pub struct EnumField
 }
 
 /// Field value types.
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub enum ValueType
 {
     /// `double`
@@ -391,7 +391,7 @@ pub enum ValueType
 }
 
 /// Service details
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct Service
 {
@@ -417,7 +417,7 @@ pub struct Service
 }
 
 /// Rpc operation
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct Rpc
 {
@@ -435,7 +435,7 @@ pub struct Rpc
 }
 
 /// Rpc operation input or output details.
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct RpcArg
 {
@@ -447,7 +447,7 @@ pub struct RpcArg
 }
 
 /// A single option.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct ProtoOption
 {
     /// Option name.
@@ -458,7 +458,7 @@ pub struct ProtoOption
 }
 
 /// Constant value, used for options.
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub enum Constant
 {
     /// An ident `foo.bar.baz`.
