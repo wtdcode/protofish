@@ -256,8 +256,10 @@ pub struct EnumInfo
     /// `EnumRef` that references this enum.
     pub self_ref: EnumRef,
 
-    fields_by_value: BTreeMap<i64, EnumField>,
-    fields_by_name: BTreeMap<String, i64>,
+    /// ...
+    pub fields_by_value: BTreeMap<i64, EnumField>,
+    /// ...
+    pub fields_by_name: BTreeMap<String, i64>,
 }
 
 /// Message field details.
